@@ -761,11 +761,13 @@ class CostQueue(Queue):
     def extend(self, items):
         self.A.extend(items)
         self.count = self.count + 1
-        print(self.count)
-        self.A.sort(key=lambda lamb: lamb.path_cost, reverse=True)
+        self.A.sort(key=lambda n: n.path_cost, reverse=True)
 
     def pop(self):
         return self.A.pop()
+
+    def __del__(self):
+        print(self.count)
 
 
 
@@ -787,11 +789,13 @@ class CostQueueSubestimated(Queue):
     def extend(self, items):
         self.A.extend(items)
         self.count = self.count +1
-        print(self.count)
-        self.A.sort(key=lambda lamb: lamb.path_cost+self.problem.h(lamb), reverse=True)
+        self.A.sort(key=lambda n: n.path_cost + self.problem.h(n), reverse=True)
 
     def pop(self):
         return self.A.pop()
+
+    def __del__(self):
+        print(self.count)
 
 
 
